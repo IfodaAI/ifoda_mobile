@@ -88,13 +88,16 @@ api.interceptors.response.use(
 
       // Network/server errors (deduped)
       if (!axiosError.response) {
-        // DEV-only: surface the *underlying* failure (DNS, TLS, ATS block,
-        // wrong baseURL, CORS preflight, …) which Axios otherwise hides behind
-        // a generic "Network Error" string. The console is unreachable inside
-        // the iOS simulator without Safari Web Inspector, so we *also* render
-        // the raw details as a long-lived on-screen toast AND a blocking
+        // TEMP DEBUG (remove once iOS simulator network issue is resolved):
+        // surface the *underlying* failure (DNS, TLS, ATS block, wrong
+        // baseURL, CORS preflight, …) which Axios otherwise hides behind a
+        // generic "Network Error" string. The console is unreachable inside
+        // the iOS simulator without Safari Web Inspector, so we render the
+        // raw details as a long-lived on-screen toast AND a blocking
         // `window.alert` — impossible to miss, easy to screenshot.
-        if (import.meta.env.DEV) {
+        // NOTE: intentionally not gated by `import.meta.env.DEV` so Capacitor
+        // release builds also show it. Gate it back once fixed.
+        {
           const url = `${originalRequest?.baseURL ?? ''}${originalRequest?.url ?? ''}`
           const cause = (axiosError as unknown as { cause?: unknown }).cause
           const details =
