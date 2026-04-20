@@ -45,8 +45,8 @@ const showTopBarBasket = computed(() => Boolean(route.meta.showTopBarBasket))
  */
 const shellStyle = computed(() => ({
   paddingTop: showTopBar.value
-    ? 'calc(var(--safe-top, 0px) + 56px)'
-    : 'var(--safe-top, 0px)',
+    ? 'calc(var(--safe-top-padded, var(--safe-area-inset-top, 0px)) + 56px)'
+    : 'var(--safe-top-padded, var(--safe-area-inset-top, 0px))',
 }))
 
 onMounted(async () => {
@@ -106,19 +106,24 @@ onMounted(async () => {
   --radius-lg: 16px;
 
   /* iOS safe-area (notch/Dynamic Island/home indicator) — default to env(). */
-  --safe-top: env(safe-area-inset-top, 0px);
-  --safe-bottom: env(safe-area-inset-bottom, 0px);
-  /* Extra UI buffer to keep content comfortably below Dynamic Island.
-     Safe-area is technically correct, but visually too tight on some devices. */
-  --safe-top-ui: calc(var(--safe-top, 0px) + 8px);
+  --safe-area-inset-top: env(safe-area-inset-top, 0px);
+  --safe-area-inset-bottom: env(safe-area-inset-bottom, 0px);
+
+  /* Legacy variables for backward compatibility if needed */
+  --safe-top: var(--safe-area-inset-top);
+  --safe-bottom: var(--safe-area-inset-bottom);
+
+  /* Extra UI buffer for visual comfort on Dynamic Island devices.
+     Standard safe-area is often too tight (44-59px); we add a bit more. */
+  --safe-top-padded: calc(var(--safe-area-inset-top) + 8px);
 }
 
 /* Older iOS WebViews only support `constant()` for safe-area insets. */
 @supports (padding-top: constant(safe-area-inset-top)) {
   :root {
-    --safe-top: constant(safe-area-inset-top);
-    --safe-bottom: constant(safe-area-inset-bottom);
-    --safe-top-ui: calc(var(--safe-top, 0px) + 8px);
+    --safe-area-inset-top: constant(safe-area-inset-top);
+    --safe-area-inset-bottom: constant(safe-area-inset-bottom);
+    --safe-top-padded: calc(var(--safe-area-inset-top) + 8px);
   }
 }
 
