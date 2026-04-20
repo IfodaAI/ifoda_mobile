@@ -91,7 +91,10 @@ function isActive(path: string) {
   position: fixed;
   left: 10px;
   right: 10px;
-  bottom: 10px;
+  /* Float above the iOS home-indicator: 10px breathing room + the device
+     safe-area (34px on notch iPhones, 0 on older devices). Without this
+     the pill overlaps the indicator on iPhone X and later. */
+  bottom: calc(10px + env(safe-area-inset-bottom, 0px));
   height: 64px;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;

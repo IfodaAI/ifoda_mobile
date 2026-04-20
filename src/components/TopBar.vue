@@ -34,11 +34,15 @@ function handleBack() {
   top: 0;
   left: 0;
   right: 0;
-  height: 56px;
+  /* Grow the bar to cover the status bar on notch devices, and push our
+     own content (back button + title) below the notch via padding-top.
+     `App.vue` already reserves `56px + env(safe-area-inset-top)` of page
+     padding, so the numbers stay in sync. */
+  height: calc(56px + env(safe-area-inset-top, 0px));
+  padding: env(safe-area-inset-top, 0px) 12px 0 12px;
   display: flex;
   align-items: center;
   gap: 10px;
-  padding: 0 12px;
   background: rgba(255, 255, 255, 0.92);
   border-bottom: 1px solid var(--color-border);
   box-shadow: 0 1px 2px rgba(15, 23, 42, 0.06);

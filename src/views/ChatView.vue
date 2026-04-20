@@ -403,14 +403,18 @@ async function handleLogout() {
 
 .chat-header {
   /* Sticky is defensive: even if any future parent gains overflow, the header
-     stays pinned to the top of the scroll container. */
+     stays pinned to the top of the scroll container.
+     `.chat-container` uses `position: fixed; inset: 0` (bypasses app-shell
+     safe-area padding), so we add the notch inset directly to the header's
+     top padding — otherwise the title/logout row sits under the iPhone X+
+     Dynamic Island / notch. */
   position: sticky;
   top: 0;
   z-index: 9;
   flex-shrink: 0;
   background: var(--color-surface);
   color: var(--color-text);
-  padding: 14px 16px;
+  padding: calc(14px + env(safe-area-inset-top, 0px)) 16px 14px 16px;
   display: flex;
   align-items: center;
   gap: 16px;
@@ -513,8 +517,10 @@ async function handleLogout() {
   position: fixed;
   left: 0;
   right: 0;
-  bottom: 84px; /* above BottomNav (10 + 64 + ~10) */
-  padding-bottom: env(safe-area-inset-bottom, 0px);
+  /* Sits above BottomNav (which itself is `10px + safe-area-bottom` above
+     the viewport edge, 64px tall). `84px + safe-area-bottom` puts a ~10px
+     gap between the dock and the nav pill on every device. */
+  bottom: calc(84px + env(safe-area-inset-bottom, 0px));
   z-index: 8500;
 }
 

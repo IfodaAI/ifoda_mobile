@@ -416,11 +416,14 @@ onUnmounted(() => {
 .wrap {
   /* Anchor to the viewport so the app-shell's reserved `padding-bottom: 92px`
      (for BottomNav on `showNav` routes) cannot push our layout off-screen or
-     create a second page-level scroll. `.list` is the only scrollable child. */
+     create a second page-level scroll. `.list` is the only scrollable child.
+     `position: fixed` bypasses the app-shell's safe-area padding, so we add
+     the notch inset directly here — otherwise the weather card on iPhone X+
+     slides under the status bar / Dynamic Island. */
   position: fixed;
   inset: 0;
   height: 100dvh;
-  padding: 16px 16px 0 16px;
+  padding: calc(16px + env(safe-area-inset-top, 0px)) 16px 0 16px;
   background: var(--color-bg);
   display: flex;
   flex-direction: column;

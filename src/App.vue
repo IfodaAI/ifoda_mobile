@@ -31,10 +31,20 @@ const showTopBar = computed(() => Boolean(route.meta.showTopBar))
 const topBarTitle = computed(() => String(route.meta.topBarTitle || ''))
 const showTopBarBasket = computed(() => Boolean(route.meta.showTopBarBasket))
 
-/** Faqat TopBar — ob-havo faqat Mahsulotlar sahifasidagi kartochkada */
-const shellPadTop = computed(() => (showTopBar.value ? 56 : 0))
-
-const shellStyle = computed(() => (shellPadTop.value > 0 ? { paddingTop: `${shellPadTop.value}px` } : undefined))
+/**
+ * Top inset strategy:
+ * - Always reserve iOS safe-area-top (notch / Dynamic Island) so page
+ *   content never slides under the status bar.
+ * - When a TopBar is shown, add its 56px height on top of the safe-area.
+ *
+ * We always emit `paddingTop` (even when it's just safe-area) so WebView
+ * gets a concrete value to measure against.
+ */
+const shellStyle = computed(() => ({
+  paddingTop: showTopBar.value
+    ? 'calc(env(safe-area-inset-top, 0px) + 56px)'
+    : 'env(safe-area-inset-top, 0px)',
+}))
 
 onMounted(async () => {
   // 1. App startup da storage dan tokens o'qish
@@ -112,7 +122,10 @@ body {
 }
 
 .app-shell.with-nav {
-  padding-bottom: 92px; /* reserve space for BottomNav */
+  /* BottomNav sits 10px above the home-indicator safe area (see BottomNav.vue),
+     so the shell must reserve: 64px (nav) + 10px (gap) + 18px (breathing) +
+     safe-area-bottom = 92px + env(safe-area-inset-bottom). */
+  padding-bottom: calc(92px + env(safe-area-inset-bottom, 0px));
 }
 
 /* TopBar balandligi shellStyle orqali (paddingTop) */
