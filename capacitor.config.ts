@@ -22,7 +22,7 @@ const config: CapacitorConfig = {
     // WKWebView insets, and transparency). Turning overlay off makes the
     // WebView start below the status bar consistently.
     StatusBar: {
-      overlaysWebView: true,
+      overlaysWebView: false,
     },
   },
 };

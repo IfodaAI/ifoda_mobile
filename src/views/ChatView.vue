@@ -414,7 +414,7 @@ async function handleLogout() {
   flex-shrink: 0;
   background: var(--color-surface);
   color: var(--color-text);
-  padding: calc(14px + var(--safe-top-ui, var(--safe-top, env(safe-area-inset-top, 0px)))) 16px 14px 16px;
+  padding: calc(14px + var(--safe-top-padded, var(--safe-area-inset-top, 0px))) 16px 14px 16px;
   display: flex;
   align-items: center;
   gap: 16px;
