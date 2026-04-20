@@ -79,6 +79,11 @@ function handleAction(id: string, to: string) {
   font-size: 13px;
   line-height: 1.35;
   color: var(--color-text);
+  /* Preserve `\n` in programmatic toast messages (e.g. DEV network-error
+     diagnostics in `src/api/index.ts`). Also wrap long URLs/words so the
+     debug toast doesn't overflow on narrow screens. */
+  white-space: pre-line;
+  word-break: break-word;
 }
 
 .act {

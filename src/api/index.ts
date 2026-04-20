@@ -90,19 +90,29 @@ api.interceptors.response.use(
       if (!axiosError.response) {
         // DEV-only: surface the *underlying* failure (DNS, TLS, ATS block,
         // wrong baseURL, CORS preflight, …) which Axios otherwise hides behind
-        // a generic "Network Error" string. Helps a lot on iOS sim where the
-        // UI just shows a localized fallback message.
+        // a generic "Network Error" string. The console is unreachable inside
+        // the iOS simulator without Safari Web Inspector, so we *also* render
+        // the raw details as a long-lived on-screen toast AND a blocking
+        // `window.alert` — impossible to miss, easy to screenshot.
         if (import.meta.env.DEV) {
           const url = `${originalRequest?.baseURL ?? ''}${originalRequest?.url ?? ''}`
-           
-          console.error(
-            '[API] raw network error →',
-            'url=', url,
-            'code=', axiosError.code,
-            'message=', axiosError.message,
-            'name=', axiosError.name,
-            'cause=', (axiosError as unknown as { cause?: unknown }).cause
-          )
+          const cause = (axiosError as unknown as { cause?: unknown }).cause
+          const details =
+            `URL: ${url || '(empty)'}\n` +
+            `code: ${axiosError.code ?? '(none)'}\n` +
+            `message: ${axiosError.message ?? '(none)'}\n` +
+            `name: ${axiosError.name ?? '(none)'}\n` +
+            `cause: ${typeof cause === 'object' ? JSON.stringify(cause) : String(cause ?? '(none)')}`
+          console.error('[API] raw network error\n' + details)
+          // 15s window gives enough time to read on-device without tapping.
+          ui.toastOnce('dev-net-raw', `DEBUG NET\n${details}`, 'error', 15000, 1500)
+          try {
+            if (typeof window !== 'undefined' && typeof window.alert === 'function') {
+              window.alert(`DEBUG NET ERROR\n\n${details}`)
+            }
+          } catch {
+            // Some WebViews throttle alerts after rapid fires — ignore.
+          }
         }
         const msg =
           humanizeApiError(axiosError) ??
