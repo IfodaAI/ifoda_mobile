@@ -17,8 +17,7 @@ coverage
 
 # --- Editor / OS ---
 .DS_Store
-.vscode/*
-!.vscode/extensions.json
+.vscode/
 .idea
 *.suo
 *.ntvs*

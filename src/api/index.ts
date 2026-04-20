@@ -88,6 +88,22 @@ api.interceptors.response.use(
 
       // Network/server errors (deduped)
       if (!axiosError.response) {
+        // DEV-only: surface the *underlying* failure (DNS, TLS, ATS block,
+        // wrong baseURL, CORS preflight, …) which Axios otherwise hides behind
+        // a generic "Network Error" string. Helps a lot on iOS sim where the
+        // UI just shows a localized fallback message.
+        if (import.meta.env.DEV) {
+          const url = `${originalRequest?.baseURL ?? ''}${originalRequest?.url ?? ''}`
+           
+          console.error(
+            '[API] raw network error →',
+            'url=', url,
+            'code=', axiosError.code,
+            'message=', axiosError.message,
+            'name=', axiosError.name,
+            'cause=', (axiosError as unknown as { cause?: unknown }).cause
+          )
+        }
         const msg =
           humanizeApiError(axiosError) ??
           'Internet bilan muammo. Tarmoqni tekshiring.'
