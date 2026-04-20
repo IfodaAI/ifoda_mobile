@@ -115,7 +115,7 @@ onMounted(async () => {
 
   /* Extra UI buffer for visual comfort on Dynamic Island devices.
      Standard safe-area is often too tight (44-59px); we add a bit more. */
-  --safe-top-padded: calc(var(--safe-area-inset-top) + 4px);
+  --safe-top-padded: calc(var(--safe-area-inset-top) + 2px);
 }
 
 /* Older iOS WebViews only support `constant()` for safe-area insets. */
@@ -123,7 +123,7 @@ onMounted(async () => {
   :root {
     --safe-area-inset-top: constant(safe-area-inset-top);
     --safe-area-inset-bottom: constant(safe-area-inset-bottom);
-    --safe-top-padded: calc(var(--safe-area-inset-top) + 4px);
+    --safe-top-padded: calc(var(--safe-area-inset-top) + 2px);
   }
 }
 
