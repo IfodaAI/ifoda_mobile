@@ -146,10 +146,10 @@ body {
 }
 
 .app-shell.with-nav {
-  /* BottomNav sits 10px above the home-indicator safe area (see BottomNav.vue),
-     so the shell must reserve: 64px (nav) + 10px (gap) + 18px (breathing) +
-     safe-area-bottom = 92px + env(safe-area-inset-bottom). */
-  padding-bottom: calc(92px + var(--safe-bottom, 0px));
+  /* BottomNav sits 4px above the home-indicator safe area (see BottomNav.vue),
+     so the shell must reserve: 64px (nav) + 4px (gap) + 18px (breathing) +
+     safe-area-bottom = 86px + safe-area-bottom. */
+  padding-bottom: calc(86px + var(--safe-bottom, 0px));
 }
 
 /* TopBar balandligi shellStyle orqali (paddingTop) */

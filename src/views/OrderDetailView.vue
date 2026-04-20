@@ -228,7 +228,7 @@ onMounted(load)
 <style scoped>
 .wrap {
   min-height: 100vh;
-  padding: 16px 16px 92px 16px;
+  padding: 16px 16px 86px 16px;
   background: var(--color-bg);
 }
 

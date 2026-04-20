@@ -502,11 +502,11 @@ async function handleLogout() {
   overscroll-behavior: contain;
   -webkit-overflow-scrolling: touch;
   /* Reserve room for: fixed input-dock height (set at runtime via
-     `--dock-height`, already includes safe-area padding) + its 84px offset
+     `--dock-height`, already includes safe-area padding) + its 78px offset
      above BottomNav + a small breathing gap so the final bubble never
      touches the dock. */
   padding: 14px 12px
-    calc(var(--dock-height, 88px) + 84px + 12px)
+    calc(var(--dock-height, 88px) + 78px + 12px)
     12px;
   display: flex;
   flex-direction: column;
@@ -517,10 +517,10 @@ async function handleLogout() {
   position: fixed;
   left: 0;
   right: 0;
-  /* Sits above BottomNav (which itself is `10px + safe-area-bottom` above
-     the viewport edge, 64px tall). `84px + safe-area-bottom` puts a ~10px
+  /* Sits above BottomNav (which itself is `4px + safe-area-bottom` above
+     the viewport edge, 64px tall). `78px + safe-area-bottom` keeps a ~10px
      gap between the dock and the nav pill on every device. */
-  bottom: calc(84px + var(--safe-bottom, env(safe-area-inset-bottom, 0px)));
+  bottom: calc(78px + var(--safe-bottom, env(safe-area-inset-bottom, 0px)));
   z-index: 8500;
 }
 

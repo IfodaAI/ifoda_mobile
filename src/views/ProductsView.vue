@@ -596,7 +596,7 @@ onUnmounted(() => {
   -webkit-overflow-scrolling: touch;
   /* Reserve space at the bottom so the final card isn't hidden behind the
      fixed BottomNav (64px + 10px offset + breathing room + safe-area). */
-  padding-bottom: calc(92px + env(safe-area-inset-bottom, 0px));
+  padding-bottom: calc(86px + env(safe-area-inset-bottom, 0px));
 }
 
 .list::-webkit-scrollbar {
