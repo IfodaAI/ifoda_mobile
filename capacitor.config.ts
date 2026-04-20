@@ -16,6 +16,14 @@ const config: CapacitorConfig = {
     // Note: WebSocket is unaffected (CORS doesn't apply to WS, only the
     // server-side Origin check does — handle that in Django if needed).
     CapacitorHttp: { enabled: true },
+    // iOS notch/Dynamic Island: prevent the native status bar from overlaying
+    // the WebView. When it overlays, content can appear "too high" under the
+    // island even if CSS safe-area padding is present (varies by iOS version,
+    // WKWebView insets, and transparency). Turning overlay off makes the
+    // WebView start below the status bar consistently.
+    StatusBar: {
+      overlaysWebView: false,
+    },
   },
 };
 
