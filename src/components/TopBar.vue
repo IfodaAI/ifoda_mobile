@@ -38,8 +38,8 @@ function handleBack() {
      own content (back button + title) below the notch via padding-top.
      `App.vue` already reserves `56px + env(safe-area-inset-top)` of page
      padding, so the numbers stay in sync. */
-  height: calc(56px + env(safe-area-inset-top, 0px));
-  padding: env(safe-area-inset-top, 0px) 12px 0 12px;
+  height: calc(56px + var(--safe-top, env(safe-area-inset-top, 0px)));
+  padding: var(--safe-top, env(safe-area-inset-top, 0px)) 12px 0 12px;
   display: flex;
   align-items: center;
   gap: 10px;

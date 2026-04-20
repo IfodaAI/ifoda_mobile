@@ -39,11 +39,14 @@ const showTopBarBasket = computed(() => Boolean(route.meta.showTopBarBasket))
  *
  * We always emit `paddingTop` (even when it's just safe-area) so WebView
  * gets a concrete value to measure against.
+ *
+ * Use CSS vars so we can support both iOS safe-area syntaxes:
+ * `env()` (modern) and `constant()` (older WebViews).
  */
 const shellStyle = computed(() => ({
   paddingTop: showTopBar.value
-    ? 'calc(env(safe-area-inset-top, 0px) + 56px)'
-    : 'env(safe-area-inset-top, 0px)',
+    ? 'calc(var(--safe-top, 0px) + 56px)'
+    : 'var(--safe-top, 0px)',
 }))
 
 onMounted(async () => {
@@ -101,6 +104,18 @@ onMounted(async () => {
   --shadow-sm: 0 1px 2px rgba(15, 23, 42, 0.08), 0 1px 1px rgba(15, 23, 42, 0.04);
   --shadow-md: 0 10px 30px rgba(15, 23, 42, 0.10);
   --radius-lg: 16px;
+
+  /* iOS safe-area (notch/Dynamic Island/home indicator) — default to env(). */
+  --safe-top: env(safe-area-inset-top, 0px);
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+/* Older iOS WebViews only support `constant()` for safe-area insets. */
+@supports (padding-top: constant(safe-area-inset-top)) {
+  :root {
+    --safe-top: constant(safe-area-inset-top);
+    --safe-bottom: constant(safe-area-inset-bottom);
+  }
 }
 
 * {
@@ -125,7 +140,7 @@ body {
   /* BottomNav sits 10px above the home-indicator safe area (see BottomNav.vue),
      so the shell must reserve: 64px (nav) + 10px (gap) + 18px (breathing) +
      safe-area-bottom = 92px + env(safe-area-inset-bottom). */
-  padding-bottom: calc(92px + env(safe-area-inset-bottom, 0px));
+  padding-bottom: calc(92px + var(--safe-bottom, 0px));
 }
 
 /* TopBar balandligi shellStyle orqali (paddingTop) */

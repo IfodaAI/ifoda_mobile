@@ -414,7 +414,7 @@ async function handleLogout() {
   flex-shrink: 0;
   background: var(--color-surface);
   color: var(--color-text);
-  padding: calc(14px + env(safe-area-inset-top, 0px)) 16px 14px 16px;
+  padding: calc(14px + var(--safe-top, env(safe-area-inset-top, 0px))) 16px 14px 16px;
   display: flex;
   align-items: center;
   gap: 16px;
@@ -520,7 +520,7 @@ async function handleLogout() {
   /* Sits above BottomNav (which itself is `10px + safe-area-bottom` above
      the viewport edge, 64px tall). `84px + safe-area-bottom` puts a ~10px
      gap between the dock and the nav pill on every device. */
-  bottom: calc(84px + env(safe-area-inset-bottom, 0px));
+  bottom: calc(84px + var(--safe-bottom, env(safe-area-inset-bottom, 0px)));
   z-index: 8500;
 }
 
