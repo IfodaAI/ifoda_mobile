@@ -33,10 +33,6 @@
 
         <div class="info">
           <h2 class="name">{{ product.name }}</h2>
-          <p class="meta">
-            <span v-if="product.package_code" class="pill">{{ product.package_code }}</span>
-            <span v-if="product.spic" class="pill ghost">{{ product.spic }}</span>
-          </p>
 
           <div class="sku">
             <p class="skuTitle">Variant (SKU)</p>

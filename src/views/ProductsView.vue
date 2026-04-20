@@ -207,7 +207,9 @@ function priceFor(p: Product) {
 }
 
 function badgeFor(p: Product) {
-  return p.package_code || p.spic || `#${p.product_id ?? ''}`
+  // Don't surface internal codes (spic/package_code) in UI.
+  // Keep a tiny stable badge for quick scanning.
+  return p.product_id ? `#${p.product_id}` : p.name
 }
 
 // Regex-stripping description HTML is cheap per call, but Vue re-runs the
