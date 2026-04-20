@@ -17,11 +17,46 @@
 
       <div class="toolbar">
         <div class="search">
-          <span class="sIcon" aria-hidden="true">⌕</span>
+          <!-- Use inline SVG: Unicode glyphs render as tofu on some iOS fonts -->
+          <svg class="sIcon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <path
+              d="M10.5 18a7.5 7.5 0 1 1 0-15 7.5 7.5 0 0 1 0 15Z"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M16.2 16.2 21 21"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
           <input v-model="q" class="sInput" type="text" placeholder="Qidirish..." />
         </div>
         <button class="filter" type="button" @click="reload(true)">
-          <span aria-hidden="true">⟳</span>
+          <svg class="rIcon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <path
+              d="M20 12a8 8 0 1 1-2.34-5.66"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M20 4v6h-6"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
           <span>Yangilash</span>
         </button>
       </div>
@@ -519,7 +554,15 @@ onUnmounted(() => {
 
 .sIcon {
   color: var(--color-muted);
-  font-weight: 900;
+  width: 18px;
+  height: 18px;
+  flex: 0 0 auto;
+}
+
+.rIcon {
+  width: 18px;
+  height: 18px;
+  flex: 0 0 auto;
 }
 
 .sInput {
