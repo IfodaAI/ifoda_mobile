@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>CAPACITOR_DEBUG</key>
+	<string>$(CAPACITOR_DEBUG)</string>
+	<key>CFBundleDevelopmentRegion</key>
+	<string>en</string>
+	<key>CFBundleDisplayName</key>
+        <string>Ifoda</string>
+	<key>CFBundleExecutable</key>
+	<string>$(EXECUTABLE_NAME)</string>
+	<key>CFBundleIdentifier</key>
+	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
+	<key>CFBundleInfoDictionaryVersion</key>
+	<string>6.0</string>
+	<key>CFBundleName</key>
+	<string>$(PRODUCT_NAME)</string>
+	<key>CFBundlePackageType</key>
+	<string>APPL</string>
+	<key>CFBundleShortVersionString</key>
+	<string>$(MARKETING_VERSION)</string>
+	<key>CFBundleVersion</key>
+	<string>$(CURRENT_PROJECT_VERSION)</string>
+	<key>LSRequiresIPhoneOS</key>
+	<true/>
+	<key>UILaunchStoryboardName</key>
+	<string>LaunchScreen</string>
+	<key>UIMainStoryboardFile</key>
+	<string>Main</string>
+	<key>UIRequiredDeviceCapabilities</key>
+	<array>
+		<string>armv7</string>
+	</array>
+	<key>UISupportedInterfaceOrientations</key>
+	<array>
+		<string>UIInterfaceOrientationPortrait</string>
+		<string>UIInterfaceOrientationLandscapeLeft</string>
+		<string>UIInterfaceOrientationLandscapeRight</string>
+	</array>
+	<key>UISupportedInterfaceOrientations~ipad</key>
+	<array>
+		<string>UIInterfaceOrientationPortrait</string>
+		<string>UIInterfaceOrientationPortraitUpsideDown</string>
+		<string>UIInterfaceOrientationLandscapeLeft</string>
+		<string>UIInterfaceOrientationLandscapeRight</string>
+	</array>
+	<key>UIViewControllerBasedStatusBarAppearance</key>
+	<true/>
+
+	<!-- Ruxsat matnlari: App Store Review ularni o'qiydi. O'zbek tilida,
+	     foydalanuvchiga aniq "nima uchun" ekanligi tushuntirilgan. -->
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Ilova sizning hududingiz bo'yicha ob-havo ma'lumotini ko'rsatish va eng yaqin filialni aniqlash uchun joylashuvingizdan foydalanadi.</string>
+	<key>NSCameraUsageDescription</key>
+	<string>Chatda kasallangan o'simlik rasmini yuborish uchun kameradan foydalanamiz.</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Chatda mahsulot yoki o'simlik rasmini yuborish uchun galereyangizdan tanlashingiz uchun kerak.</string>
+
+	<!-- Deep link: ifoda://auth?... (Telegram login). Agar kelajakda
+	     Universal Links (https://ifoda.uz/...) qo'shilsa, buni
+	     Associated Domains entitlement'iga ko'chirish kerak. -->
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleURLName</key>
+			<string>uz.ifoda.app</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>ifoda</string>
+			</array>
+		</dict>
+	</array>
+</dict>
+</plist>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Auto Backup rules for Android 6.0 (API 23) through Android 11 (API 30).
+  Paired with android:allowBackup="false" — this is belt-and-suspenders:
+  if allowBackup is ever flipped back to true, nothing is backed up because
+  every storage domain is excluded below.
+-->
+<full-backup-content>
+    <exclude domain="root" path="." />
+    <exclude domain="file" path="." />
+    <exclude domain="database" path="." />
+    <exclude domain="sharedpref" path="." />
+    <exclude domain="external" path="." />
+</full-backup-content>
