@@ -9,7 +9,12 @@
       value as `0`, and our status-bar/home-indicator padding collapses →
       content slides under the notch.
     -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <!--
+      Disable pinch-zoom in the WebView so the UI doesn't "blow up" with a
+      two-finger gesture (common on iOS). If you want to re-enable it later,
+      remove `user-scalable=no` and `maximum-scale=1.0`.
+    -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=no, maximum-scale=1.0">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="default">
     <title>Vite App</title>

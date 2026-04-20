@@ -56,6 +56,8 @@
 	<string>Chatda kasallangan o'simlik rasmini yuborish uchun kameradan foydalanamiz.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>Chatda mahsulot yoki o'simlik rasmini yuborish uchun galereyangizdan tanlashingiz uchun kerak.</string>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>Chatda yuboriladigan rasmlarni galereyangizga saqlash (yoki tahrirlangan nusxasini yaratish) uchun ruxsat so‘raymiz.</string>
 
 	<!-- Deep link: ifoda://auth?... (Telegram login). Agar kelajakda
 	     Universal Links (https://ifoda.uz/...) qo'shilsa, buni
