@@ -108,6 +108,9 @@ onMounted(async () => {
   /* iOS safe-area (notch/Dynamic Island/home indicator) — default to env(). */
   --safe-top: env(safe-area-inset-top, 0px);
   --safe-bottom: env(safe-area-inset-bottom, 0px);
+  /* Extra UI buffer to keep content comfortably below Dynamic Island.
+     Safe-area is technically correct, but visually too tight on some devices. */
+  --safe-top-ui: calc(var(--safe-top, 0px) + 8px);
 }
 
 /* Older iOS WebViews only support `constant()` for safe-area insets. */
@@ -115,6 +118,7 @@ onMounted(async () => {
   :root {
     --safe-top: constant(safe-area-inset-top);
     --safe-bottom: constant(safe-area-inset-bottom);
+    --safe-top-ui: calc(var(--safe-top, 0px) + 8px);
   }
 }
 

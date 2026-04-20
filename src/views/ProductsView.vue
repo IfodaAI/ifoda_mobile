@@ -425,7 +425,7 @@ onUnmounted(() => {
   position: fixed;
   inset: 0;
   height: 100dvh;
-  padding: calc(16px + var(--safe-top, env(safe-area-inset-top, 0px))) 16px 0 16px;
+  padding: calc(16px + var(--safe-top-ui, var(--safe-top, env(safe-area-inset-top, 0px)))) 16px 0 16px;
   background: var(--color-bg);
   display: flex;
   flex-direction: column;
